@@ -36,11 +36,12 @@ const {
   PermissionsBitField
 } = require('discord.js');
 
-const INTERACTION_CHANNEL_ID = '1460649020354728149';
+const INTERACTION_CHANNEL_ID = '1460649020354728149'; // 🎨 Channel where profile commands are received
+// 🗂️ Destination channels based on profile type
 const TARGET_CHANNELS = {
-  boy: { id: '1457845005518508275', label: 'Boy profile' },
-  girl: { id: '1457845307139162312', label: 'Girl profile' },
-  anime: { id: '1457845411388854495', label: 'Anime profile' }
+  boy: { id: '1457845005518508275', label: 'Boy profile' }, // Boys profiles room id
+  girl: { id: '1457845307139162312', label: 'Girl profile' }, // Girls profiles room id
+  anime: { id: '1457845411388854495', label: 'Anime profile' } // Anime profiles room id
 };
 
 
@@ -60,7 +61,7 @@ async function waitForUserMessage(channel, userId, time = 1000 * 60 * 3) {
     const msg = collected.first();
 
     if (msg && msg.content.toLowerCase().trim() === 'cancel') {
-      await msg.reply('❌ تم إلغاء العملية.');
+      await msg.reply('❌ The operation has been cancelled.');
       return null;
     }
     return msg;
@@ -128,7 +129,7 @@ module.exports = async function startProfileFlow(client) {
       if (cancelled) return;
       cancelled = true;
       console.log(`[ProfileFlow] Cancelled for ${userId}: ${reason}`);
-      await m.author.send(`⚠️ تم إلغاء العملية: ${reason}`).catch(() => {});
+      await m.author.send(`⚠️ The operation has been cancelled: ${reason}`).catch(() => {});
       
       for (const msg of botMessages) safeDelete(msg, 2000);
       for (const msg of userMessages) safeDelete(msg, 2000);
@@ -140,7 +141,7 @@ module.exports = async function startProfileFlow(client) {
       const attach = m.attachments.first();
       if (attach.size > MAX_FILE_SIZE) throw new Error('Avatar exceeds 10MB');
       const avatarBuffer = await fetchImageBuffer(attach.url);
-      const avatarMsg = await m.reply('✨ تم حفظ الافتار. الآن أرسل صورة البنر أو اكتب `none` (أو `cancel` للإلغاء).');
+      const avatarMsg = await m.reply('✨ Avatar saved. Now send the banner image – or type none (or cancel to cancel).');
       botMessages.push(avatarMsg);
       userMessages.push(m);
 
@@ -161,7 +162,7 @@ module.exports = async function startProfileFlow(client) {
       }
 
       
-      const primaryPrompt = await channel.send(`<@${userId}> أرسل رمز HEX للـ Primary (مثال: #ff0000) أو \`cancel\` للإلغاء.`);
+      const primaryPrompt = await channel.send(`<@${userId}> 🎨 Now send the HEX code for the Primary color (example: #ff0000) – or type cancel to cancel.`);
       botMessages.push(primaryPrompt);
       const primaryMsg = await waitForUserMessage(channel, userId);
       if (!primaryMsg) throw new Error('Primary color timeout');
@@ -170,7 +171,7 @@ module.exports = async function startProfileFlow(client) {
       userMessages.push(primaryMsg);
 
       
-      const accentPrompt = await channel.send(`<@${userId}> أرسل رمز HEX للـ Accent (أو اكتب \`skip\` لتطابق Primary).`);
+      const accentPrompt = await channel.send(`<@${userId}> 🎨 Now send the HEX code for the Accent color – or type skip to match the Primary color.`);
       botMessages.push(accentPrompt);
       const accentMsg = await waitForUserMessage(channel, userId);
       let accent = primary;
@@ -178,7 +179,7 @@ module.exports = async function startProfileFlow(client) {
         accent = accentMsg.content.startsWith('#') ? accentMsg.content : `#${accentMsg.content}`;
         userMessages.push(accentMsg);
       } else if (accentMsg && accentMsg.content.toLowerCase() !== 'skip') {
-        await accentMsg.reply('⚠️ رمز غير صالح، سيتم استخدام نفس اللون الأساسي.').catch(() => {});
+        await accentMsg.reply('⚠️ Invalid HEX code. The Primary color will be used instead.').catch(() => {});
         if (accentMsg) userMessages.push(accentMsg);
       } else if (accentMsg) {
         userMessages.push(accentMsg);
@@ -207,16 +208,16 @@ module.exports = async function startProfileFlow(client) {
       const options = Object.entries(TARGET_CHANNELS).map(([value, obj]) => ({
         label: obj.label,
         value,
-        description: `إرسال إلى ${obj.label}`
+        description: `📤 Sending to ${obj.label}`
       }));
 
       const select = new StringSelectMenuBuilder()
         .setCustomId(`route_profile_${userId}_${Date.now()}`) 
-        .setPlaceholder('اختر القسم المناسب...')
+        .setPlaceholder('📂 Choose the appropriate section')
         .addOptions(options);
 
       const menuMsg = await channel.send({
-        content: `<@${userId}> المعاينة جاهزة، اختر القسم:`,
+        content: `<@${userId}> 🎨 Preview ready! Choose the section:`,
         files: [attachmentPreview],
         components: [new ActionRowBuilder().addComponents(select)]
       });
@@ -232,7 +233,7 @@ module.exports = async function startProfileFlow(client) {
         });
       } catch (err) {
         
-        await channel.send(`<@${userId}> ⏰ انتهى الوقت، يرجى بدء العملية من جديد.`);
+        await channel.send(`<@${userId}> ⏰ Time's up! Please start the process again.`);
         throw new Error('Interaction timeout');
       }
 
@@ -241,11 +242,11 @@ module.exports = async function startProfileFlow(client) {
       if (!targetChannel) throw new Error('Target channel not found');
 
       await targetChannel.send({
-        content: `<a:eei_anime_hmvgirl:1426562559372296233> **New Profile** By <@${userId}>\n<a:Colors:1504860732687253575> **Colors:** \`${primary}\` & \`${accent}\``,
+        content: `🎨 **New Profile** By <@${userId}>\n🎨 **Colors:** \`${primary}\` & \`${accent}\``,
         files: [new AttachmentBuilder(finalBuffer, { name: finalName })]
       });
 
-      await interaction.reply({ content: '✅ تم إرسال البروفايل بنجاح!', ephemeral: true });
+      await interaction.reply({ content: '✅ Profile sent to!', ephemeral: true });
 
       
       setTimeout(async () => {
@@ -256,7 +257,7 @@ module.exports = async function startProfileFlow(client) {
     } catch (err) {
       if (!cancelled) {
         console.error(`[ProfileFlow] Error for user ${userId}:`, err.message);
-        await m.author.send(`❌ حدث خطأ: ${err.message || 'يرجى المحاولة لاحقاً'}`).catch(() => {});
+        await m.author.send(`❌ An error occurred: ${err.message || 'Please try again later.'}`).catch(() => {});
       }
     } finally {
       if (!cancelled) {
