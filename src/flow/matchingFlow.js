@@ -46,7 +46,7 @@ async function waitForUserMessage(channel, userId, time = 1000 * 60 * 3) {
     });
     const msg = collected.first();
     if (msg && msg.content.toLowerCase().trim() === 'cancel') {
-      await msg.reply('❌ تم إلغاء العملية.');
+      await msg.reply('❌ The operation has been cancelled.');
       return null;
     }
     return msg;
@@ -111,7 +111,7 @@ module.exports = async function startMatchingFlow(client) {
       if (cancelled) return;
       cancelled = true;
       console.log(`[MatchingFlow] Cancelled for ${userId}: ${reason}`);
-      await m.author.send(`⚠️ تم إلغاء العملية: ${reason}`).catch(() => {});
+      await m.author.send(`⚠️ The operation has been cancelled: ${reason}`).catch(() => {});
       for (const msg of botMessages) safeDelete(msg, 2000);
       for (const msg of userMessages) safeDelete(msg, 2000);
       activeFlows.delete(flowKey);
@@ -122,7 +122,7 @@ module.exports = async function startMatchingFlow(client) {
       const attach1 = m.attachments.first();
       if (attach1.size > MAX_FILE_SIZE) throw new Error('Avatar1 exceeds 10MB');
       const avatar1Buffer = await fetchImageBuffer(attach1.url);
-      const reply1 = await m.reply('✨ تم حفظ الافتار الأول. أرسل الافتار الثاني (أو `cancel` للإلغاء).');
+      const reply1 = await m.reply('🎨 First avatar saved. Waiting for the second avatar (send cancel to abort).');
       botMessages.push(reply1);
       userMessages.push(m);
 
@@ -133,7 +133,7 @@ module.exports = async function startMatchingFlow(client) {
       if (msg2.attachments.first().size > MAX_FILE_SIZE) throw new Error('Avatar2 exceeds 10MB');
       const avatar2Buffer = await fetchImageBuffer(msg2.attachments.first().url);
       userMessages.push(msg2);
-      const reply2 = await msg2.reply('تم حفظ الافتار الثاني. أرسل البنر أو اكتب `none` (أو `cancel`).');
+      const reply2 = await msg2.reply('🎨 Second avatar saved. Now send the banner – or type none (or cancel to cancel).');
       botMessages.push(reply2);
 
       
@@ -148,7 +148,7 @@ module.exports = async function startMatchingFlow(client) {
       }
 
       
-      const primaryPrompt = await channel.send(`<@${userId}> أرسل رمز HEX للـ Primary (مثال: #ff0000) أو \`cancel\`.`);
+      const primaryPrompt = await channel.send(`<@${userId}> 🎨 Now send the HEX code for the Primary color (example: #ff0000) – or type cancel to cancel.`);
       botMessages.push(primaryPrompt);
       const primaryMsg = await waitForUserMessage(channel, userId);
       if (!primaryMsg) throw new Error('Primary color timeout');
@@ -157,7 +157,7 @@ module.exports = async function startMatchingFlow(client) {
       userMessages.push(primaryMsg);
 
       
-      const accentPrompt = await channel.send(`<@${userId}> أرسل رمز HEX للـ Accent (أو \`skip\` لتطابق Primary).`);
+      const accentPrompt = await channel.send(`<@${userId}> Now send the HEX code for the Accent color – or type skip to match the Primary color.`);
       botMessages.push(accentPrompt);
       const accentMsg = await waitForUserMessage(channel, userId);
       let accent = primary;
@@ -165,7 +165,7 @@ module.exports = async function startMatchingFlow(client) {
         accent = accentMsg.content.startsWith('#') ? accentMsg.content : `#${accentMsg.content}`;
         userMessages.push(accentMsg);
       } else if (accentMsg && accentMsg.content.toLowerCase() !== 'skip') {
-        await accentMsg.reply('⚠️ رمز غير صالح، سيتم استخدام نفس اللون الأساسي.').catch(() => {});
+        await accentMsg.reply('⚠️ Invalid HEX code. The Primary color will be used instead.').catch(() => {});
         if (accentMsg) userMessages.push(accentMsg);
       } else if (accentMsg) {
         userMessages.push(accentMsg);
@@ -192,7 +192,7 @@ module.exports = async function startMatchingFlow(client) {
         files: [attachment]
       });
 
-      const successMsg = await channel.send(`✅ تم إرسال البروفايل إلى <#${MATCHING_RESULT_CHANNEL_ID}>`);
+      const successMsg = await channel.send(`✅ Profile sent to <#${MATCHING_RESULT_CHANNEL_ID}>`);
       botMessages.push(successMsg);
 
       
@@ -204,7 +204,7 @@ module.exports = async function startMatchingFlow(client) {
     } catch (err) {
       if (!cancelled) {
         console.error(`[MatchingFlow] Error for user ${userId}:`, err.message);
-        await channel.send(`<@${userId}> ❌ حدث خطأ: ${err.message || 'يرجى المحاولة لاحقاً'}`).catch(() => {});
+        await channel.send(`<@${userId}> ❌ An error occurred: ${err.message || 'Please try again later.'}`).catch(() => {});
       }
     } finally {
       if (!cancelled) {
