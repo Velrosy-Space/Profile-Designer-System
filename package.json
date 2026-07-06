@@ -1,0 +1,19 @@
+{
+  "name": "Profile Designer Bot",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "author": "Velrosy Space",
+  "dependencies": {
+    "discord.js": "^14.11.0",
+    "@napi-rs/canvas": "^0.1.64",
+    "colors": "^1.4.0",
+    "dotenv": "^16.3.1",
+    "file-type": "^16.5.4",
+    "gif-frames": "^1.0.1",
+    "gifencoder": "^2.0.1",
+    "get-stream": "^6.0.0"
+  }
+}
