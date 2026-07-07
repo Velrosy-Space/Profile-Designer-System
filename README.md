@@ -38,7 +38,7 @@ Edit the `.env` file with your own bot token:
 DISCORD_TOKEN=
 ```
 
-Edit the 
+Edit the `matchingFlow.js` file with your channel IDs
 
 ```js
 const INTERACTION_CHANNEL_ID = '1460649090298675374';
@@ -47,7 +47,7 @@ const MATCHING_RESULT_CHANNEL_ID = '1457845491583815690';
 
 
 
-Edit the 
+Edit the `profileFlow.js` file with your channel IDs
 ```js
  const INTERACTION_CHANNEL_ID = '1460649020354728149'; // 🎨 Channel where profile commands are received
   // 🗂️ Destination channels based on profile type
