@@ -5,6 +5,13 @@
 **I'm currently coding this bot for my community server, Havenia. I think it will be helpful for others — it's simple to use and clean**
 
 
+<p>my discord account</p>
+  <a href="https://discord.com/users/264004753447452674">
+    <img src="https://lanyard.cnrad.dev/api/264004753447452674?borderRadius=20px&showDisplayName=true&idleMessage=Weee&bg=90734b&theme=dark" alt="Discord Presence" />
+  </a>
+
+
+
   <details>
   <summary><b><font size="5">📸 Preview / معاينة الصور</font></b></summary> 
   <br>
