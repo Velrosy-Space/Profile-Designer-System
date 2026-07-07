@@ -65,9 +65,9 @@ In `ready.js` set your stream URL and custom statuses
 ```js
 const activities = [
             `Status 1`,
-            `Status 2`,
+            `Status 2`, 
             `Try New Profile`,
         ];
 
-url: "https://www.twitch.tv/test" 
+url: "https://www.twitch.tv/test"> // ┈➤ example : https://www.twitch.tv/velrosy
 ```
