@@ -23,10 +23,10 @@
 </details>
 
 
-## ⚠️ ملاحظة 
-: تأكد أن البوت لديه صلاحية إرسال الرسائل وإرفاق الملفات في هذه الرومات.
-## ⚠️ Note
-Make sure the bot has permissions to send messages and attach files in these channels.
+## 🎸 ملاحظة 
+: تأكد أن البوت لديه صلاحية إرسال الرسائل وإرفاق الملفات في هذه الرومات. يمكنك إستعمال صورة افتار او بنر بصيغة gif
+## 🎸 Note
+Make sure the bot has permissions to send messages and attach files in these channels. You can use gif Avatar/ banner 
 
 
 
