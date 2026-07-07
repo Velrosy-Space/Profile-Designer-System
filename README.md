@@ -5,11 +5,6 @@
 **I'm currently coding this bot for my community server, Havenia. I think it will be helpful for others — it's simple to use and clean**
 
 
-<p>my discord account</p>
-  <a href="https://discord.com/users/264004753447452674">
-    <img src="https://lanyard.cnrad.dev/api/264004753447452674?borderRadius=20px&showDisplayName=true&idleMessage=Weee&bg=90734b&theme=dark" alt="Discord Presence" />
-  </a>
-
 
 
   <details>
@@ -40,6 +35,13 @@ Make sure the bot has permissions to send messages and attach files in these cha
 - 💡 Designed for easy use & full customization
 - 📦 Uses `discord.js` v14 and other npm packages
 - contact Me If You Need Help (valouyr) ⬅️ Discord User
+
+<p>My Discord Account</p>
+  <a href="https://discord.com/users/264004753447452674">
+    <img src="https://lanyard.cnrad.dev/api/264004753447452674?borderRadius=20px&showDisplayName=true&idleMessage=Weee&bg=90734b&theme=dark" alt="Discord Presence" />
+  </a>
+  
+
 
 
 ## ⚙️ Configuration
