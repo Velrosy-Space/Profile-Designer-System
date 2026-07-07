@@ -39,13 +39,22 @@ DISCORD_TOKEN=
 ```
 
 Edit the 
+
 ```js
-`39` const INTERACTION_CHANNEL_ID = '1460649020354728149'; // 🎨 Channel where profile commands are received
-`40`  // 🗂️ Destination channels based on profile type
-`41` const TARGET_CHANNELS = {
-`42`  boy: { id: '1457845005518508275', label: 'Boy profile' }, // Boys profiles room id
-`43`  girl: { id: '1457845307139162312', label: 'Girl profile' }, // Girls profiles room id
-`44`  anime: { id: '1457845411388854495', label: 'Anime profile' } // Anime profiles room id
-`45` };
+const INTERACTION_CHANNEL_ID = '1460649090298675374';
+const MATCHING_RESULT_CHANNEL_ID = '1457845491583815690';
+```
+
+
+
+Edit the 
+```js
+ const INTERACTION_CHANNEL_ID = '1460649020354728149'; // 🎨 Channel where profile commands are received
+  // 🗂️ Destination channels based on profile type
+ const TARGET_CHANNELS = {
+  boy: { id: '1457845005518508275', label: 'Boy profile' }, // Boys profiles room id
+  girl: { id: '1457845307139162312', label: 'Girl profile' }, // Girls profiles room id
+  anime: { id: '1457845411388854495', label: 'Anime profile' } // Anime profiles room id
+ };
 
 ```
