@@ -18,7 +18,8 @@
   <br><br>
 </details>
 
-⚠️ ملاحظة 
+
+## ⚠️ ملاحظة 
 : تأكد أن البوت لديه صلاحية إرسال الرسائل وإرفاق الملفات في هذه الرومات.
 ⚠️ Note
 Make sure the bot has permissions to send messages and attach files in these channels.
