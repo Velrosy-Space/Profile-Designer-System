@@ -7,11 +7,11 @@
   <summary><b><font size="5">📸 Preview / معاينة الصور</font></b></summary> 
   <br>
 
-🎨 Profile Preview 
+## 🎨 Profile Preview 
 
 <img src="Assets/Profile_Preview_20260707031246.png" width="100%" />
 
-🎨 Matching Profile Preview 
+## 🎨 Matching Profile Preview 
 
 <img src="Assets/Matching-Preview_20260707030857.png" width="100%" />
 
