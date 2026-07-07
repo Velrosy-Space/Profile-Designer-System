@@ -30,3 +30,10 @@ Make sure the bot has permissions to send messages and attach files in these cha
 - 💡 Designed for easy use & full customization
 - 📦 Uses `discord.js` v14 and other npm packages
 - contact Me If You Need Help (valouyr) ⬅️ Discord User
+
+
+## ⚙️ Configuration
+Edit the `.env` file with your own bot token:
+```json
+
+
