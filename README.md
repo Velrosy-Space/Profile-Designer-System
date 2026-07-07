@@ -1,6 +1,8 @@
 # Profile-Designer-System-
-🎨 Discord Bot – Profile Designer v1
 
+## 🎨 Discord Bot – Profile Designer v1
+
+**I'm currently coding this bot for my community server, Havenia. I think it will be helpful for others — it's simple to use and clean**
 
 
   <details>
