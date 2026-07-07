@@ -37,3 +37,8 @@ Edit the `.env` file with your own bot token:
 ```.env
 DISCORD_TOKEN=
 ```
+
+
+```js
+
+```
