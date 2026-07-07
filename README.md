@@ -34,6 +34,6 @@ Make sure the bot has permissions to send messages and attach files in these cha
 
 ## ⚙️ Configuration
 Edit the `.env` file with your own bot token:
-```json
+```.env
 DISCORD_TOKEN=
 ```
