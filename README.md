@@ -38,7 +38,14 @@ Edit the `.env` file with your own bot token:
 DISCORD_TOKEN=
 ```
 
-
+Edit the 
 ```js
+const INTERACTION_CHANNEL_ID = '1460649020354728149'; // 🎨 Channel where profile commands are received
+// 🗂️ Destination channels based on profile type
+const TARGET_CHANNELS = {
+  boy: { id: '1457845005518508275', label: 'Boy profile' }, // Boys profiles room id
+  girl: { id: '1457845307139162312', label: 'Girl profile' }, // Girls profiles room id
+  anime: { id: '1457845411388854495', label: 'Anime profile' } // Anime profiles room id
+};
 
 ```
