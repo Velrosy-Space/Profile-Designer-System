@@ -1,4 +1,4 @@
-#  Hi There Welcome To Velrosy Space 
+#  Hi There Welcome To Havix Studio
 
 ## 🎨 Discord Bot – Profile Designer v1
 
